@@ -1,0 +1,24 @@
+L'idée est de rassembler les informations nécessaires aux calculs des Finger Table de 
+tous les pairs par un pair en particulier qui les distribuera ensuite.
+
+
+Il nous faut donc d'abord élire un processus qui s'occupera des calculs parmis les 
+initiateur,
+Comme nous somme sur un anneau bidirectionnel on va utiliser l'algorithme Hirschberg-Sinclair:
+A chaque tour pour chaque processus initiateur:
+-ils enveront un jeton avec leur id sur une distance 2^(nombre de tour passé)
+-les processus non initiateur se contenteront de faire passer le jeton au suivant, ou au 
+ precedent si la distance est atteinte
+-si un processus initiateur voit arriver un jeton dont l'id est superieur au sien 
+ il se considerera comme battu et passera en mode non initiateur
+
+-Au final le seul processus dont le jeton aura reussis a faire le tour de l'anneau se saura 
+élu et pourra prevenir tous les autres de la fin de l'election et de son id.
+
+la complexité en message de cet algorithme est en O(N log N)
+
+
+Finalement tous les processus enveront leur id CHORD à l'élu qui pourra calculer les
+Finger Table et les distribura a tous les autres, ce qui prend 2(N-1) messages de plus, on reste donc en O(N log N) messages.
+
+

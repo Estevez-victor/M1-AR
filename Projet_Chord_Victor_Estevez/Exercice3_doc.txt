@@ -1,0 +1,12 @@
+On remarque que l'insertion d'un nouveau pair np n'affectera que les pairs ayant le successeur de np(succ-np) dans leur Finger Table.
+On pose  up=l'unique pair dont np a connaissance initialement.
+
+-np contacte up qui lui renvoye la liste des pair presents dans la DHT. 2 messages
+-np calcule sa Finger Table, il envoye ensuite un message à succ-np. 1 message
+-succ-np envoye alors un message a tous les processus present dans sa liste inverse leur indiquant de mettre à jour leur Finger Table en prenant en compte np. Dans le pire des cas la liste inverse comporte (N+2)/2 processus.
+
+On n'atteind jamais N messages, on a donc une complexité en messages sous lineaire.
+
+
+
+
